@@ -6,41 +6,41 @@
 /*   By: aderraj <aderraj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 11:49:20 by aderraj           #+#    #+#             */
-/*   Updated: 2023/12/11 18:52:26 by aderraj          ###   ########.fr       */
+/*   Updated: 2023/12/26 13:03:28 by aderraj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void    ft_putchar(char c, int *count)
+void	ft_putchar(char c, int *count)
 {
-    write(1, &c, 1);
-    (*count)++;
+	write(1, &c, 1);
+	(*count)++;
 }
 
-void    ft_putnstr(char *str, int n, int *count)
+void	ft_putnstr(char *str, int n, int *count)
 {
-    int    i;
+	int	i;
 
-    i = 0;
-    while (i < n && str[i])
-        ft_putchar(str[i++], count);
+	i = 0;
+	while (i < n && str[i])
+		ft_putchar(str[i++], count);
 }
 
-void    base_convert(unsigned long int x, t_format *specs, char *base)
+void	base_convert(unsigned long int x, t_format *specs, char *base)
 {
-    if (!x && !specs->precision)
-        return ;
-    if (x >= 16)
-        base_convert(x / 16, specs, base);
-    ft_putchar(base[x % 16], specs->count);
+	if (!x && !specs->precision)
+		return ;
+	if (x >= 16)
+		base_convert(x / 16, specs, base);
+	ft_putchar(base[x % 16], specs->count);
 }
 
-void    ft_putnbr(long int x, t_format *specs)
+void	ft_putnbr(long int x, t_format *specs)
 {
-    if (!x && !specs->precision)
-        return ;
-    else if (x > 9)
-        ft_putnbr(x / 10, specs);
-    ft_putchar(x % 10 + '0', specs->count);
+	if (!x && !specs->precision)
+		return ;
+	else if (x > 9)
+		ft_putnbr(x / 10, specs);
+	ft_putchar(x % 10 + '0', specs->count);
 }
