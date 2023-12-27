@@ -6,7 +6,7 @@
 /*   By: aderraj <aderraj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 11:49:20 by aderraj           #+#    #+#             */
-/*   Updated: 2023/12/26 13:03:28 by aderraj          ###   ########.fr       */
+/*   Updated: 2023/12/27 15:30:21 by aderraj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	ft_putnbr(long int x, t_format *specs)
 {
 	if (!x && !specs->precision)
 		return ;
+	else if (x < 0)
+		x  *= -1;
 	else if (x > 9)
 		ft_putnbr(x / 10, specs);
 	ft_putchar(x % 10 + '0', specs->count);

@@ -6,7 +6,7 @@
 /*   By: aderraj <aderraj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 02:34:57 by aderraj           #+#    #+#             */
-/*   Updated: 2023/12/26 13:01:06 by aderraj          ###   ########.fr       */
+/*   Updated: 2023/12/27 13:29:15 by aderraj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		u_format(t_format *specs, va_list ap);
 void		p_format(t_format *specs, va_list ap);
 void		hex_format(t_format *specs, va_list ap);
 void		s_format(t_format *specs, va_list ap);
-void		c_format(t_format *specs, va_list ap);
+void		c_format(char c, t_format *specs);
 
 int			specifier(char c);
 int			ft_count(unsigned long x, int y);
@@ -57,5 +57,5 @@ void		u_zero(long x, int y, t_format *specs);
 void		u_zero_null(t_format *specs);
 void		hex_zero(unsigned long x, char *base, t_format *specs);
 void		hex_null(t_format *specs);
-void		hex_hash(t_format *specs);
+void		hex_hash(unsigned long x, t_format *specs);
 #endif

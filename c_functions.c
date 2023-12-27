@@ -6,7 +6,7 @@
 /*   By: aderraj <aderraj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 09:42:42 by aderraj           #+#    #+#             */
-/*   Updated: 2023/12/26 13:00:14 by aderraj          ###   ########.fr       */
+/*   Updated: 2023/12/27 13:29:20 by aderraj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,8 @@ static void	c_default(char c, t_format *specs)
 	ft_putchar(c, specs->count);
 }
 
-void	c_format(t_format *specs, va_list ap)
+void	c_format(char c, t_format *specs)
 {
-	char	c;
-
-	c = va_arg(ap, int);
 	if (specs->flags[0])
 		c_minus(c, specs);
 	else

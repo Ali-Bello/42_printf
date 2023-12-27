@@ -6,7 +6,7 @@
 /*   By: aderraj <aderraj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 12:26:31 by aderraj           #+#    #+#             */
-/*   Updated: 2023/12/26 13:03:31 by aderraj          ###   ########.fr       */
+/*   Updated: 2023/12/27 13:36:06 by aderraj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ static void	s_default(char *str, int len, t_format *specs)
 	ft_putnstr(str, len, specs->count);
 }
 
-static void	s_null(t_format *specs)
-{
-	while (specs->width-- > 6)
-		ft_putchar(' ', specs->count);
-	if (specs->precision >= 0 && specs->precision < 6)
-		ft_putnstr("(null)", specs->precision, specs->count);
-	if (specs->precision >= 6 || specs->precision == -1)
-		ft_putnstr("(null)", 6, specs->count);
-}
+// static void	s_null(t_format *specs)
+// {
+// 	while (specs->width-- > 6)
+// 		ft_putchar(' ', specs->count);
+// 	if (specs->precision >= 0 && specs->precision < 6)
+// 		ft_putnstr("(null)", specs->precision, specs->count);
+// 	if (specs->precision >= 6 || specs->precision == -1)
+// 		ft_putnstr("(null)", 6, specs->count);
+// }
 
 void	s_format(t_format *specs, va_list ap)
 {
@@ -50,13 +50,10 @@ void	s_format(t_format *specs, va_list ap)
 
 	str = va_arg(ap, char *);
 	if (!str)
-		s_null(specs);
+		str = "(null)";
+	len = ft_strlen(str);
+	if (specs->flags[0])
+		s_minus(str, len, specs);
 	else
-	{
-		len = ft_strlen(str);
-		if (specs->flags[0])
-			s_minus(str, len, specs);
-		else
-			s_default(str, len, specs);
-	}
+		s_default(str, len, specs);
 }
