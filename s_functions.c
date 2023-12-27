@@ -6,7 +6,7 @@
 /*   By: aderraj <aderraj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 12:26:31 by aderraj           #+#    #+#             */
-/*   Updated: 2023/12/27 13:36:06 by aderraj          ###   ########.fr       */
+/*   Updated: 2023/12/27 19:29:15 by aderraj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,6 @@ static void	s_default(char *str, int len, t_format *specs)
 		ft_putchar(c, specs->count);
 	ft_putnstr(str, len, specs->count);
 }
-
-// static void	s_null(t_format *specs)
-// {
-// 	while (specs->width-- > 6)
-// 		ft_putchar(' ', specs->count);
-// 	if (specs->precision >= 0 && specs->precision < 6)
-// 		ft_putnstr("(null)", specs->precision, specs->count);
-// 	if (specs->precision >= 6 || specs->precision == -1)
-// 		ft_putnstr("(null)", 6, specs->count);
-// }
 
 void	s_format(t_format *specs, va_list ap)
 {

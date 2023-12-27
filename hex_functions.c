@@ -6,7 +6,7 @@
 /*   By: aderraj <aderraj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 10:05:10 by aderraj           #+#    #+#             */
-/*   Updated: 2023/12/27 17:51:22 by aderraj          ###   ########.fr       */
+/*   Updated: 2023/12/27 20:46:42 by aderraj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,34 @@ static void	hex_minus(unsigned long x, char *base, t_format *specs)
 		ft_putchar(' ', specs->count);
 }
 
+void	hex_zero(unsigned long x, char *base, t_format *specs)
+{
+	int		len;
+	int		tmp;
+	char	c;
+
+	len = ft_count(x, 16);
+	tmp = width_set(x, len, specs);
+	c = ' ' * (specs->precision != -1) + '0' * (specs->precision == -1);
+	specs->width -= 2 * (specs->flags[4] == 1 && x);
+	if (c == '0')
+		hex_hash(x, specs);
+	while (specs->width-- - tmp > 0)
+		ft_putchar(c, specs->count);
+	if (c == ' ')
+		hex_hash(x, specs);
+	while (tmp-- > len)
+		ft_putchar('0', specs->count);
+	base_convert(x, specs, base);
+}
+
 static void	hex_default(unsigned long x, char *base, t_format *specs)
 {
 	int	len;
 	int	tmp;
 
 	len = ft_count(x, 16);
-	tmp = specs->precision * (specs->precision > len)
-		+ len * (specs->precision <= len);
-	if (!x && !specs->precision)
-		tmp = 0;
+	tmp = width_set(x, len, specs);
 	specs->width -= 2 * (specs->flags[4] == 1 && x);
 	while (specs->width-- > tmp)
 		ft_putchar(' ', specs->count);

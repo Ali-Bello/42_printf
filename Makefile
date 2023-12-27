@@ -2,9 +2,9 @@ NAME = libftprintf.a
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ft_printf.c parsing.c formatting.c d_functions.c p_functions.c\
+SRCS = ft_printf.c parsing.c d_functions.c p_functions.c\
 	u_functions.c hex_functions.c s_functions.c c_functions.c\
-	helpers.c helpers2.c helpers3.c print_functions.c\
+	helpers.c helpers2.c print_functions.c\
 
 OBJS = $(SRCS:.c=.o)
 
@@ -25,3 +25,5 @@ fclean: clean
 bonus: $(NAME)
 
 re: fclean all
+
+.SECONDARY: $(OBJS)

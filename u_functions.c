@@ -6,7 +6,7 @@
 /*   By: aderraj <aderraj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 12:27:06 by aderraj           #+#    #+#             */
-/*   Updated: 2023/12/27 15:05:03 by aderraj          ###   ########.fr       */
+/*   Updated: 2023/12/27 20:48:08 by aderraj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,26 @@ void	u_minus(long x, int d, t_format *specs)
 		ft_putchar(' ', specs->count);
 }
 
+void	u_zero(long x, int y, t_format *specs)
+{
+	int		tmp;
+	char	c;
+
+	tmp = width_set(x, y, specs);
+	c = ' ' * (specs->precision != -1) + '0' * (specs->precision == -1);
+	while (specs->width-- - tmp > 0)
+		ft_putchar(c, specs->count);
+	while (tmp-- > y)
+		ft_putchar('0', specs->count);
+	ft_putnbr(x, specs);
+}
+
 static void	u_precision(long x, int y, t_format *specs)
 {
 	int	tmp;
 	int	flag;
 
-	tmp = specs->precision * (specs->precision > y)
-		+ y * (specs->precision <= y);
-	if (!x && !specs->precision)
-		tmp = 0;
+	tmp = width_set(x, y, specs);
 	flag = specs->precision;
 	while (specs->width-- > tmp)
 		ft_putchar(' ', specs->count);
